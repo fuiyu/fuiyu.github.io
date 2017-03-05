@@ -46,7 +46,7 @@
 
   <h1 class="post-title">前端面试碰到的问题</h1>
   <section class="post-content article-entry">
-    <h3 id="css方面"><a href="#css方面" class="headerlink" title="css方面"></a>css方面</h3><h4 id="1-盒子模型"><a href="#1-盒子模型" class="headerlink" title="1.盒子模型"></a>1.盒子模型</h4><p>CSS box-model</p>
+    <h3 id="css方面"><a href="#css方面" class="headerlink" title="css方面"></a>css方面</h3><h4 id="1-盒子模型"><a href="#1-盒子模型" class="headerlink" title="1.盒子模型"></a>1.盒子模型</h4><p><img src="asset/images/box-model.gif" alt="盒子模型"></p>
 <ul>
 <li>Margin(外边距) - 清除边框外的区域，外边距是透明的。</li>
 <li>Border(边框) - 围绕在内边距和内容外的边框。</li>
@@ -56,7 +56,7 @@
 <p>1.盒子模型的兼容性<br>&ensp;标准盒子模型中width属性值指的是content的width，设置正确的文档声明（DTD）后，大多数浏览器可以正确显示内容。但在IE5和IE6的非标准盒子模型中，width属性包含了padding和border，IE8及更早版本不支持填充的宽度和边框的宽度属性设置。<br>2.解决方法：</p>
 <ul>
 <li>不给指定元素添加内边距，给父元素添加内边距，或这指定元素添加外边距。</li>
-<li>在HTML页面声明&lt;!DOCTYPE html&gt;</li>
+<li>在HTML页面声明<code>&lt;!DOCTYPE html&gt;</code></li>
 </ul>
 <h4 id="2-css优先级规则"><a href="#2-css优先级规则" class="headerlink" title="2.css优先级规则"></a>2.css优先级规则</h4><p>1.就近原则</p>
 <ul>
