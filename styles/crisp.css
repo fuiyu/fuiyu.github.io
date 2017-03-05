@@ -2,6 +2,15 @@
 	padding: 0;
 	margin: 0;
 } 
+table{border-collapse: collapse;}
+th{
+	background: #f1efef;
+}
+td ,th{
+	border: 1px solid #9E9E9E;
+	text-align:center;
+	padding: 5px 10px;
+}
 /* Basic Typography */
 @font-face {
     font-family: 'Open Sans';
