@@ -46,8 +46,7 @@
 
   <h1 class="post-title">前端面试碰到的问题</h1>
   <section class="post-content article-entry">
-    <h3 id="css方面"><a href="#css方面" class="headerlink" title="css方面"></a>css方面</h3><hr>
-<h4 id="一、盒子模型"><a href="#一、盒子模型" class="headerlink" title="一、盒子模型"></a>一、盒子模型</h4><p><img src="http://omc3jlwz8.bkt.clouddn.com/box-model.gif" alt="盒子模型"></p>
+    <h2 id="css方面"><a href="#css方面" class="headerlink" title="css方面"></a>css方面</h2><h4 id="一、盒子模型"><a href="#一、盒子模型" class="headerlink" title="一、盒子模型"></a>一、盒子模型</h4><p><img src="http://omc3jlwz8.bkt.clouddn.com/box-model.gif" alt="盒子模型"></p>
 <ul>
 <li>Margin(外边距) - 清除边框外的区域，外边距是透明的。</li>
 <li>Border(边框) - 围绕在内边距和内容外的边框。</li>
@@ -91,8 +90,7 @@
 <h4 id="四、布局问题"><a href="#四、布局问题" class="headerlink" title="四、布局问题"></a>四、布局问题</h4><p>Q:使数个div块在容器内，垂直水平居中，且在拉伸情况下左右边距固定，不能使用绝对定位和JavaScript控制。<br>A:使用flex布局，代码如下:</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">.box&#123;</div><div class="line">  display:box;</div><div class="line">  justify-content:center;</div><div class="line">  align-items:center;</div><div class="line">&#125; </div><div class="line">.item&#123;</div><div class="line">  margin-left:10px;</div><div class="line">  border: 1px solid #333;</div><div class="line">  flex-basis: 30%;//总和大于100%</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p><br></p>
-<h3 id="javascript方面"><a href="#javascript方面" class="headerlink" title="javascript方面"></a>javascript方面</h3><hr>
-<h4 id="一、函数调用方法有哪几种"><a href="#一、函数调用方法有哪几种" class="headerlink" title="一、函数调用方法有哪几种"></a>一、函数调用方法有哪几种</h4><p>1.作为对象的方法调用<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> obj = &#123;</div><div class="line">      <span class="attr">getA</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            alert(<span class="string">'A'</span>)</div><div class="line">      &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">obj.getA();<span class="comment">//调用</span></div></pre></td></tr></table></figure></p>
+<h2 id="javascript方面"><a href="#javascript方面" class="headerlink" title="javascript方面"></a>javascript方面</h2><h4 id="一、函数调用方法有哪几种"><a href="#一、函数调用方法有哪几种" class="headerlink" title="一、函数调用方法有哪几种"></a>一、函数调用方法有哪几种</h4><p>1.作为对象的方法调用<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> obj = &#123;</div><div class="line">      <span class="attr">getA</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            alert(<span class="string">'A'</span>)</div><div class="line">      &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">obj.getA();<span class="comment">//调用</span></div></pre></td></tr></table></figure></p>
 <p>2.作为普通函数调用<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">func</span>(<span class="params"></span>)</span>&#123;</div><div class="line">      alert(<span class="string">'调用'</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line">func();<span class="comment">//调用</span></div></pre></td></tr></table></figure></p>
 <p>3.通过构造器调用<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> <span class="class"><span class="keyword">class</span> </span>= <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">      <span class="keyword">this</span>.name = <span class="string">'调用'</span></div><div class="line">      <span class="keyword">this</span>.getName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            alert(<span class="keyword">this</span>.name)</div><div class="line">      &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> func = <span class="keyword">new</span> <span class="class"><span class="keyword">class</span>()</span></div><div class="line"><span class="title">func</span>.<span class="title">getName</span>()</div></pre></td></tr></table></figure></p>
 <p>4.通过Function.prototype.call 或 Function.prototype.apply 调用<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> obj1 = &#123;</div><div class="line">      <span class="attr">getName</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            alert(<span class="keyword">this</span>.name)</div><div class="line">      &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> obj2 = &#123;</div><div class="line">      <span class="attr">name</span>:<span class="string">'调用'</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">obj1.getName.call(obj2)</div></pre></td></tr></table></figure></p>
@@ -106,6 +104,28 @@
 <p>上例中形成了一个闭包结构，使变量一直未被销毁。</p>
 <p>3.将变量变成函数的私有变量。</p>
 <p>4.利用上例的闭包结构原理延续变量寿命</p>
+<h2 id="html-方面"><a href="#html-方面" class="headerlink" title="html 方面"></a>html 方面</h2><h4 id="一、seo优化"><a href="#一、seo优化" class="headerlink" title="一、seo优化"></a>一、seo优化</h4><p>1.网站结构优化</p>
+<ul>
+<li>控制首页链接数，不能太少，不要超过100个，尽量全面直达内页；</li>
+<li>目录层次扁平化，级数在三级以内，即点击三次可到达网站的任何一个内页</li>
+<li>导航优化，尽量使用文字做导航，<code>&lt;img&gt;</code>标签必须加上’alt’和title，每个页面最好加上面包屑导航</li>
+<li>网站的布局，头部-&gt;主体-&gt;底部，减少页面大小，提高加载速度。</li>
+</ul>
+<p>2.网页代码优化</p>
+<ul>
+<li><code>&lt;title&gt;</code>关键词要放前面，不要重复，每个页面的标题也不要相同；</li>
+<li><code>&lt;meta keywords&gt;</code>列举页面的关键字；</li>
+<li><code>&lt;meta description&gt;</code>网页的描述，不要太长；</li>
+<li><code>&lt;body&gt;</code>中的标签，尽量做到标签语义化，适当的位置使用适当的标签；</li>
+<li><code>&lt;a&gt;</code>需要加title，链接外网时需要加上el=”nofollow”，防止”蜘蛛”爬了外部链接，不再回来；</li>
+<li>尽量做到正文标题用<code>&lt;h1&gt;</code>标签，副标题用<code>&lt;h2&gt;</code>标签, 而其它地方不应该随便乱用 h 标题标签；</li>
+<li>表格应该使用<code>&lt;caption&gt;</code>表格标题标签；</li>
+<li><code>&lt;strong&gt;</code>标签在搜索引擎中能够得到高度的重视，它能突出关键词，表现重要的内容，<code>&lt;em&gt;</code>标签强调效果仅次于<code>&lt;strong&gt;</code>标签。<code>&lt;b&gt;</code>、<code>&lt;i&gt;</code>标签: 只是用于显示效果时使用，在SEO中不会起任何效果；</li>
+<li>重要内容不要用JS输出；</li>
+<li>尽量少使用iframe框架；</li>
+<li>对于不想显示的文字内容，应当设置z-index或设置到浏览器显示器之外。因为搜索引擎会过滤掉display:none其中的内容；</li>
+<li>js代码如果是操作DOM操作，应尽量放在body结束标签之前，html代码之后；</li>
+</ul>
 
   </section>
   <footer class="post-footer">
