@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+    <head>
+		
+        <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="description" content="姚富渝的博客">
+        <link rel="shortcut icon" href="/asset/logo.png"/>
+        <link rel="alternate" type="application/rss+xml" title="Fuiyu" href="">
+        <title>git config详解 | Fuiyu&#39;s blog</title>
+        <meta name="keyword" content="git config详解 | Fuiyu&#39;s blog,姚富渝的博客">
+
+        <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="/styles/crisp.css">
+        <meta name="HandheldFriendly" content="True" />
+        <meta name="MobileOptimized" content="320" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+    </head>
+    
+		<body class="post-template">
+	
+
+        <header id="header">
+            <a id="logo" href="/"><img src="/asset/logo.png" alt="Fuiyu's blog" /></a>
+            <h1><a href="/">Fuiyu</a></h1>
+            <p></p>
+            <div id="follow-icons">
+          <a href="http://github.com//fuiyu"><i class="fa fa-github-square fa-2x"></i></a>
+          </div>
+<h6><a href="/about">关于</a></h6>
+        </header>
+
+        <main id="content">
+        
+
+<article class="post">
+  March 6, 2017
+  
+    <span class="taglist">  &middot; 
+    
+    
+      <a href='/tags/git-config/'>git,config</a> 
+    
+    </span>
+  
+
+  <h1 class="post-title">git config详解</h1>
+  <section class="post-content article-entry">
+    <p><strong>git config 用于git的基础配置，可以通过修改配置文件或者使用git config命令更改配置</strong></p>
+<h3 id="一、概要格式"><a href="#一、概要格式" class="headerlink" title="一、概要格式"></a>一、概要格式</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">$ git config [&lt;file-option&gt;] [type] [--show-origin] [-z|--null] name [value [value_regex]]</div><div class="line">$ git config [&lt;file-option&gt;] [type] --add name value</div><div class="line">$ git config [&lt;file-option&gt;] [type] --replace-all name value [value_regex]</div><div class="line">$ git config [&lt;file-option&gt;] [type] [--show-origin] [-z|--null] --get name [value_regex]</div><div class="line">$ git config [&lt;file-option&gt;] [type] [--show-origin] [-z|--null] --get-all name [value_regex]</div><div class="line">$ git config [&lt;file-option&gt;] [type] [--show-origin] [-z|--null] [--name-only] --get-regexp name_regex [value_regex]</div><div class="line">$ git config [&lt;file-option&gt;] [type] [-z|--null] --get-urlmatch name URL</div><div class="line">$ git config [&lt;file-option&gt;] --unset name [value_regex]</div><div class="line">$ git config [&lt;file-option&gt;] --unset-all name [value_regex]</div><div class="line">$ git config [&lt;file-option&gt;] --rename-section old_name new_name</div><div class="line">$ git config [&lt;file-option&gt;] --remove-section name</div><div class="line">$ git config [&lt;file-option&gt;] [--show-origin] [-z|--null] [--name-only] -l | --<span class="built_in">list</span></div><div class="line">$ git config [&lt;file-option&gt;] --get-color name [<span class="keyword">default</span>]</div><div class="line">$ git config [&lt;file-option&gt;] --get-colorbool name [<span class="built_in">stdout</span>-is-tty]</div><div class="line">$ git config [&lt;file-option&gt;] -e | --edit</div></pre></td></tr></table></figure>
+<p>你可以通过命令进行<code>query</code>（查询）/<code>set</code>（设置）/<code>replace</code>（替代）/<code>unset</code> （取消），<code>name</code>一般是指section“.”后面的key变量，如<code>git congfig user.name fuiyu</code></p>
+<p>结果<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[user]</div><div class="line">    name = fuiyu</div></pre></td></tr></table></figure></p>
+<p>上文的values的值可以包括，<br><strong>boolean</strong>，<code>true： yes | no | true | 1 , false: no | off | false | 0</code><br><strong>integer</strong>，整数型<br><strong>color</strong>，支持normal, black, red, green, yellow, blue, magenta, cyan and white; 还支持属性 bold, dim, ul, blink and reverse或加no前缀（e.g. , nored ,noul ,etc）， 如果你的终端支持，也可以写RGB，16进制的颜色格式，其他详见git官网。<br><strong>pathname</strong>，可以以”~/“ 或 “~user/“ 开头, 通常 ~/ 指向 $HOME,  ~user/ 指向用户的主目录.</p>
+<h3 id="二、基本用法"><a href="#二、基本用法" class="headerlink" title="二、基本用法"></a>二、基本用法</h3><h4 id="一、-config配置文件的存储位置以及权重"><a href="#一、-config配置文件的存储位置以及权重" class="headerlink" title="一、 config配置文件的存储位置以及权重"></a>一、 config配置文件的存储位置以及权重</h4><p>linux 类系统下位置：<br>1./etc/gitconfig 文件：系统级配置文件，包含了适用于系统所有用户和所有仓库的值。如果你传递参数选项’–system’ 给 git config，它将明确的读和写这个文件。<br>2.~/.gitconfig 文件 ：全局配置文件，具体到你的用户。你可以通过传递–global 选项使Git 读或写这个特定的文件。<br>3.位于git目录的config文件 (也就是 .git/config) ：仓库级配置文件，无论你当前在用的仓库是什么，特定指向该单一的仓库。每个级别重写前一个级别的值。因此，在.git/config中的值覆盖了在/etc/gitconfig中的同一个值。<br>window系统位置：<br>1.系统级配置文件，git安装目录下，文件名为gitconfig，如D:\Program Files\Git\mingw64\etc.gitconfig<br>2.全局配置文件，在用户目录下，文件名为.gitconfig，如C:\users\fuiyu.gitconfig<br>3.仓库级配置文件，git目录下的conifg文件</p>
+<p>权重分配：<br>仓库&gt;全局&gt;系统</p>
+<h4 id="二、用git-config命令查看配置文件"><a href="#二、用git-config命令查看配置文件" class="headerlink" title="二、用git config命令查看配置文件"></a>二、用git config命令查看配置文件</h4><p>命令参数–list |  -l<br>格式：git config [–local|–global|–system] -l<br>查看仓库级的config，即.git/.config，命令：git config –local -l<br>查看全局级的config，即C:\Users\zuoyu.ht.gitconfig，命令：git config –global -l<br>查看系统级的config，即D:\Program Files\Git\etc\gitconfig，命令：git config –system -l<br>查看当前生效的配置，命令：git config -l</p>
+<h4 id="三、配置用户信息"><a href="#三、配置用户信息" class="headerlink" title="三、配置用户信息"></a>三、配置用户信息</h4><p>开始所提到的git congfig user.name fuiyu，还可以设置email，address。</p>
+<p>四、 用git config命令编辑配置文件<br>命令参数为–edit | -e<br>格式：git config [–local|–global|–system] -e<br>查看仓库级的config，即.git/.config，命令：git config –local -e，与–list参数不同的是，git config -e默认是编辑仓库级的配置文件。<br>查看全局级的config，即C:\Users\zuoyu.ht.gitconfig，命令：git config –global -e<br>查看系统级的config，即D:\Program Files\Git\etc\gitconfig，命令：git config –system -e<br>   执行这个命令的时候，git会用配置文件中设定的编辑器打开配置文件。<br>(git config –global core.editor vim用于配置编辑器)</p>
+<h4 id="五、增加一个配置项"><a href="#五、增加一个配置项" class="headerlink" title="五、增加一个配置项"></a>五、增加一个配置项</h4><p>命令参数–add<br>用法类似于config section.key value，同上，也可以加上[–local|–global|–system]作为参数指向不同级的文件</p>
+<h4 id="六、取消配置项"><a href="#六、取消配置项" class="headerlink" title="六、取消配置项"></a>六、取消配置项</h4><p>命令参数 –unset<br>用法也跟第五点差不多</p>
+
+  </section>
+  <footer class="post-footer">
+    <!--
+    <section class="author">
+      <h4>Fuiyu</h4>
+      <p></p>
+    </section>
+    -->
+  </footer>
+</article>
+
+<nav class="pagination" role="pagination">
+    
+    <span class="page-number">•</span>
+    
+    <a class="older-posts" href="/2017/03/06/gitcommand/">
+        <!--git命令清单--> 下一页 →
+    </a>
+    
+</nav>
+
+
+        </main>
+        <footer id="footer">
+            <section id="footer-message">&copy; 2017 Fuiyu. All rights reserved.</section>
+        </footer>
+    </body>
+</html>
+
+
