@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+    <head>
+		
+        <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="baidu-site-verification" content="ku35cmeXRh" />
+        <meta name="description" content="姚富渝的博客，姚富渝，fuiyu，blog">
+        <link rel="shortcut icon" href="/asset/logo.png"/>
+        <link rel="alternate" type="application/rss+xml" title="Fuiyu" href="">
+        <title>nodejs实现简单的文件上传 | Fuiyu&#39;s blog</title>
+        <meta name="keyword" content="nodejs实现简单的文件上传 | Fuiyu&#39;s blog,姚富渝的博客，姚富渝，fuiyu，blog">
+
+        <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="/styles/crisp.css">
+        <meta name="HandheldFriendly" content="True" />
+        <meta name="MobileOptimized" content="320" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+    </head>
+    
+		<body class="post-template">
+	
+
+        <header id="header">
+            <a id="logo" href="/"><img src="/asset/logo.png" alt="Fuiyu's blog" /></a>
+            <h1><a href="/">Fuiyu</a></h1>
+            <p></p>
+            <div id="follow-icons">
+          <a href="http://github.com//fuiyu"><i class="fa fa-github-square fa-2x"></i></a>
+          </div>
+<h6><a href="/about">关于</a></h6>
+        </header>
+
+        <main id="content">
+        
+
+<article class="post">
+  March 11, 2017
+  
+    <span class="taglist">  &middot; 
+    
+    
+      <a href='/tags/nodejs-multiparty/'>nodejs,multiparty</a> 
+    
+    </span>
+  
+
+  <h1 class="post-title">nodejs实现简单的文件上传</h1>
+  <section class="post-content article-entry">
+    <h2 id="上传文件，三种方式"><a href="#上传文件，三种方式" class="headerlink" title="上传文件，三种方式"></a>上传文件，三种方式</h2><h4 id="1、上传文件直接作为body上传服务器，用fs模块读取"><a href="#1、上传文件直接作为body上传服务器，用fs模块读取" class="headerlink" title="1、上传文件直接作为body上传服务器，用fs模块读取"></a>1、上传文件直接作为body上传服务器，用fs模块读取</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">req.pipe(fs.createWriteStream(filename))</div></pre></td></tr></table></figure>
+<h4 id="2、使用BASE64编码后上传，用buffer直接读取"><a href="#2、使用BASE64编码后上传，用buffer直接读取" class="headerlink" title="2、使用BASE64编码后上传，用buffer直接读取"></a>2、使用BASE64编码后上传，用buffer直接读取</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Buffer.from(body.content, <span class="string">'base64'</span>)</div></pre></td></tr></table></figure>
+<h4 id="3、multipart-form-data，对浏览器的兼容性较好，请求体如图"><a href="#3、multipart-form-data，对浏览器的兼容性较好，请求体如图" class="headerlink" title="3、multipart/form-data，对浏览器的兼容性较好，请求体如图"></a>3、multipart/form-data，对浏览器的兼容性较好，请求体如图</h4><p><img src="http://omc3jlwz8.bkt.clouddn.com/d81cf01a-b38d-4b56-a72d-4db5313da6c9.jpg" alt="浏览器抓包图"><br><br><br>需要使用multiparty模块进行解析<br><br><br>安装<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install multiparty</div></pre></td></tr></table></figure></p>
+<p>解析上传的请求题<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> multiparty = <span class="built_in">require</span>(<span class="string">'multiparty'</span>);</div><div class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>);</div><div class="line"><span class="keyword">var</span> util = <span class="built_in">require</span>(<span class="string">'util'</span>);</div><div class="line">http.createServer(<span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (req.url === <span class="string">'/upload'</span> &amp;&amp; req.method === <span class="string">'POST'</span>) &#123;</div><div class="line">    <span class="comment">// parse a file upload</span></div><div class="line">        <span class="keyword">var</span> form = <span class="keyword">new</span> multiparty.Form();</div><div class="line">        form.parse(req, <span class="function"><span class="keyword">function</span>(<span class="params">err, fields, files</span>) </span>&#123;</div><div class="line">            res.writeHead(<span class="number">200</span>, &#123;<span class="string">'content-type'</span>: <span class="string">'text/plain'</span>&#125;);</div><div class="line">            res.write(<span class="string">'received upload:\n\n'</span>);</div><div class="line">            res.end(util.inspect(&#123;<span class="attr">fields</span>: fields, <span class="attr">files</span>: files&#125;));</div><div class="line">        &#125;);</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">// show a file upload form</span></div><div class="line">    res.writeHead(<span class="number">200</span>, &#123;<span class="string">'content-type'</span>: <span class="string">'text/html'</span>&#125;);</div><div class="line">    res.end(</div><div class="line">        <span class="string">'&lt;form action="/upload" enctype="multipart/form-data" method="post"&gt;'</span>+</div><div class="line">        <span class="string">'&lt;input type="text" name="title"&gt;&lt;br&gt;'</span>+</div><div class="line">        <span class="string">'&lt;input type="file" name="upload" multiple="multiple"&gt;&lt;br&gt;'</span>+</div><div class="line">        <span class="string">'&lt;input type="submit" value="Upload"&gt;'</span>+</div><div class="line">        <span class="string">'&lt;/form&gt;'</span></div><div class="line">    );</div><div class="line">&#125;).listen(<span class="number">8080</span>);</div></pre></td></tr></table></figure></p>
+
+  </section>
+  <footer class="post-footer">
+    <!--
+    <section class="author">
+      <h4>Fuiyu</h4>
+      <p></p>
+    </section>
+    -->
+  </footer>
+</article>
+
+<nav class="pagination" role="pagination">
+    
+    <a class="newer-posts" href="/2017/03/11/sticky-note-20170311001/">
+        ← 上一篇 <!--便利贴-小记hashchange-->
+    </a>
+    
+    <span class="page-number">•</span>
+    
+    <a class="older-posts" href="/2017/03/06/gitconfig/">
+        <!--git config详解--> 下一篇 →
+    </a>
+    
+</nav>
+
+
+        </main>
+        <footer id="footer">
+            <section id="footer-message">&copy; 2017 Fuiyu. All rights reserved.</section>
+        </footer>
+    </body>
+</html>
+
+

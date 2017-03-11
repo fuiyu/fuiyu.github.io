@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+    <head>
+		
+        <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="baidu-site-verification" content="ku35cmeXRh" />
+        <meta name="description" content="姚富渝的博客，姚富渝，fuiyu，blog">
+        <link rel="shortcut icon" href="/asset/logo.png"/>
+        <link rel="alternate" type="application/rss+xml" title="Fuiyu" href="">
+        <title>便利贴-小记hashchange | Fuiyu&#39;s blog</title>
+        <meta name="keyword" content="便利贴-小记hashchange | Fuiyu&#39;s blog,姚富渝的博客，姚富渝，fuiyu，blog">
+
+        <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="/styles/crisp.css">
+        <meta name="HandheldFriendly" content="True" />
+        <meta name="MobileOptimized" content="320" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+    </head>
+    
+		<body class="post-template">
+	
+
+        <header id="header">
+            <a id="logo" href="/"><img src="/asset/logo.png" alt="Fuiyu's blog" /></a>
+            <h1><a href="/">Fuiyu</a></h1>
+            <p></p>
+            <div id="follow-icons">
+          <a href="http://github.com//fuiyu"><i class="fa fa-github-square fa-2x"></i></a>
+          </div>
+<h6><a href="/about">关于</a></h6>
+        </header>
+
+        <main id="content">
+        
+
+<article class="post">
+  March 11, 2017
+  
+    <span class="taglist">  &middot; 
+    
+    
+      <a href='/tags/hashchange-href/'>hashchange,href</a> 
+    
+    </span>
+  
+
+  <h1 class="post-title">便利贴-小记hashchange</h1>
+  <section class="post-content article-entry">
+    <h2 id="上传文件，三种方式"><a href="#上传文件，三种方式" class="headerlink" title="上传文件，三种方式"></a>上传文件，三种方式</h2><h4 id="hashchange，监听浏览器地址锚点（”-”）后部分发生修改触发事件"><a href="#hashchange，监听浏览器地址锚点（”-”）后部分发生修改触发事件" class="headerlink" title="hashchange，监听浏览器地址锚点（”#”）后部分发生修改触发事件"></a>hashchange，监听浏览器地址锚点（”#”）后部分发生修改触发事件</h4><p>利用此事件监听可实现简单的路由切换，根据”#”后部分的变化。在页面插入不同的html，实现类似于vue、react的路由。<br><br><br>你可以使用以下方式调用事件:<br> a.通过设置Location 对象 的 location.hash 或 location.href 属性修改锚部分。<br> b.使用不同书签导航到当前页面（使用”后退” 或”前进”按钮）<br> c.点击链接跳转到书签锚<br>浏览器的三种监听<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;element onhashchange=<span class="string">"myScript"</span>&gt;</div><div class="line">object.onhashchange=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;myScript&#125;;</div><div class="line">object.addEventListener(<span class="string">"hashchange"</span>, myScript);</div></pre></td></tr></table></figure></p>
+<p>浏览器兼容性</p>
+<table>
+<thead>
+<tr>
+<th>Google</th>
+<th>IE</th>
+<th>firefox</th>
+<th>Safari</th>
+<th>Opera</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>  5.0</td>
+<td>8.0</td>
+<td>3.6</td>
+<td>5.0</td>
+<td>10.6</td>
+</tr>
+</tbody>
+</table>
+
+  </section>
+  <footer class="post-footer">
+    <!--
+    <section class="author">
+      <h4>Fuiyu</h4>
+      <p></p>
+    </section>
+    -->
+  </footer>
+</article>
+
+<nav class="pagination" role="pagination">
+    
+    <span class="page-number">•</span>
+    
+    <a class="older-posts" href="/2017/03/11/nodejs-uploadFile/">
+        <!--nodejs实现简单的文件上传--> 下一篇 →
+    </a>
+    
+</nav>
+
+
+        </main>
+        <footer id="footer">
+            <section id="footer-message">&copy; 2017 Fuiyu. All rights reserved.</section>
+        </footer>
+    </body>
+</html>
+
+
